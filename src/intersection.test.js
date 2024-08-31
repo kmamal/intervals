@@ -1,0 +1,15 @@
+const { test } = require('@kmamal/testing')
+const { intersection } = require('./intersection')
+
+test("intervals.intersection", (t) => {
+	t.equal(intersection([], []), [])
+	t.equal(intersection([], [ [ 1, 2 ] ]), [])
+	t.equal(intersection([ [ 1, 2 ] ], []), [])
+	t.equal(intersection([ [ 1, 2 ] ], [ [ 3, 4 ] ]), [])
+	t.equal(intersection([ [ 3, 4 ] ], [ [ 1, 2 ] ]), [])
+	t.equal(intersection([ [ 1, 2 ] ], [ [ 1, 2 ] ]), [ [ 1, 2 ] ])
+	t.equal(intersection([ [ 1, 3 ] ], [ [ 2, 4 ] ]), [ [ 2, 3 ] ])
+	t.equal(intersection([ [ 2, 4 ] ], [ [ 1, 3 ] ]), [ [ 2, 3 ] ])
+	t.equal(intersection([ [ 1, 4 ] ], [ [ 2, 3 ] ]), [ [ 2, 3 ] ])
+	t.equal(intersection([ [ 2, 3 ] ], [ [ 1, 4 ] ]), [ [ 2, 3 ] ])
+})
