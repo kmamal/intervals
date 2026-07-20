@@ -16,7 +16,8 @@ const normalize = (intervals) => {
 		if (type === 'start') {
 			count += 1
 			if (count === 1) { start = value }
-		} else {
+		}
+		else {
 			count -= 1
 			if (count === 0) { result.push([ start, value ]) }
 		}

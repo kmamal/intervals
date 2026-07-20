@@ -20,14 +20,17 @@ const difference = (a, b) => {
 			count += 1
 			if (count === 1 && source === a) {
 				start = value
-			} else if (count === 2 && source === b && start !== value) {
+			}
+			else if (count === 2 && source === b && start !== value) {
 				result.push([ start, value ])
 			}
-		} else {
+		}
+		else {
 			count -= 1
 			if (count === 0 && source === a && start !== value) {
 				result.push([ start, value ])
-			} else if (count === 1 && source === b) {
+			}
+			else if (count === 1 && source === b) {
 				start = value
 			}
 		}

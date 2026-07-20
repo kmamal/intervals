@@ -17,7 +17,7 @@ const xor = (a, b) => {
 
 		if (count === 1) {
 			start = value
-		} else {
+		} else if (start !== value) {
 			result.push([ start, value ])
 		}
 	}
