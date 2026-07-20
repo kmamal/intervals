@@ -12,7 +12,7 @@
     "update-exports": "node ./scripts/update-exports.mjs"
   },
   "dependencies": {
-    "@kmamal/interval": "0.0.1",
+    "@kmamal/interval": "0.0.2",
     "@kmamal/util": "0.2.32"
   },
   "devDependencies": {
@@ -21,10 +21,10 @@
   "exports": {
     "./union": "./src/union.js",
     "./intersection": "./src/intersection.js",
+    "./normalize": "./src/normalize.js",
     "./xor": "./src/xor.js",
     "./difference": "./src/difference.js",
     "./common/compare-endpoints": "./src/common/compare-endpoints.js",
-    "./normalize": "./src/normalize.js"
-  },
-  "main": "./src/index.js"
+    "./common/push-interval": "./src/common/push-interval.js"
+  }
 }

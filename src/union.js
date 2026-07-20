@@ -2,6 +2,7 @@ const { endpoints } = require('@kmamal/interval/endpoints')
 const { flatMap } = require('@kmamal/util/array/flat-map')
 const { mergeWith } = require('@kmamal/util/array/merge')
 const { compareEndpoints } = require('./common/compare-endpoints')
+const { pushInterval } = require('./common/push-interval')
 
 const union = (a, b) => {
 	const aPoints = flatMap(a, endpoints)
@@ -18,7 +19,7 @@ const union = (a, b) => {
 			if (count === 1) { start = value }
 		} else {
 			count -= 1
-			if (count === 0) { result.push([ start, value ]) }
+			if (count === 0) { pushInterval(result, start, value) }
 		}
 	}
 	return result

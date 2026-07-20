@@ -2,8 +2,9 @@ const { endpoints } = require('@kmamal/interval/endpoints')
 const { flatMap } = require('@kmamal/util/array/flat-map')
 const { sortWith } = require('@kmamal/util/array/sort')
 const { compareEndpoints } = require('./common/compare-endpoints')
+const { pushInterval } = require('./common/push-interval')
 
-const makePoints = (x) => x[0] < x[1] ? endpoints(x) : []
+const makePoints = (x) => x[0] <= x[1] ? endpoints(x) : []
 
 const normalize = (intervals) => {
 	const points = flatMap(intervals, makePoints)
@@ -19,7 +20,7 @@ const normalize = (intervals) => {
 		}
 		else {
 			count -= 1
-			if (count === 0) { result.push([ start, value ]) }
+			if (count === 0) { pushInterval(result, start, value) }
 		}
 	}
 	return result

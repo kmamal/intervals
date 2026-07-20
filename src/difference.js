@@ -2,7 +2,9 @@ const { endpoints } = require('@kmamal/interval/endpoints')
 const { flatMap } = require('@kmamal/util/array/flat-map')
 const { forEach } = require('@kmamal/util/array/for-each')
 const { mergeWith } = require('@kmamal/util/array/merge')
+const { nextToward } = require('@kmamal/util/ieee-float/double')
 const { compareEndpoints } = require('./common/compare-endpoints')
+const { pushInterval } = require('./common/push-interval')
 
 const difference = (a, b) => {
 	const makeEndpointA = (y) => { y.source = a }
@@ -21,17 +23,18 @@ const difference = (a, b) => {
 			if (count === 1 && source === a) {
 				start = value
 			}
-			else if (count === 2 && source === b && start !== value) {
-				result.push([ start, value ])
+			else if (count === 2 && source === b) {
+				const end = nextToward(value, -Infinity)
+				if (start <= end) { pushInterval(result, start, end) }
 			}
 		}
 		else {
 			count -= 1
-			if (count === 0 && source === a && start !== value) {
-				result.push([ start, value ])
+			if (count === 0 && source === a && start <= value) {
+				pushInterval(result, start, value)
 			}
 			else if (count === 1 && source === b) {
-				start = value
+				start = nextToward(value, Infinity)
 			}
 		}
 	}
